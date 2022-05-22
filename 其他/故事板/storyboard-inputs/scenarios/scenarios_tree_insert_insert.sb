@@ -1,0 +1,11 @@
+scenario scenario1
+input temp1 -> t, t.right -> null, t.left -> tnodes:r, x -> xloc, xloc.val -> 3, t.val -> 2
+output temp1 -> t, t.right -> xloc, t.left -> tnodes:r, x -> xloc
+;
+
+scenario scenario2
+input temp1 -> t, t.left -> null, t.right -> tnodes:r, x -> xloc, t.val -> 3, xloc.val -> 2
+output temp1 -> t, t.left -> x, t.right -> tnodes:r, x -> xloc
+;
+
+data_selector val;

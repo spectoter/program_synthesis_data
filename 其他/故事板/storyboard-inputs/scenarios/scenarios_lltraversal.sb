@@ -1,0 +1,15 @@
+scenario scenario1
+input head -> a, a.next -> mid:f, mid:e.next -> b, b.next -> null
+output head -> a, temp1 -> b, a.next -> mid:f, mid:e.next -> b, b.next -> null
+;
+
+
+
+unfold mid:f x [in (mid:f,x)] [out (mid:e,mid:e)] (x.next -> mid:f) ();
+
+unfold mid:f x [in (mid:f,x)] [out (mid:e,x)] () (mid:e);
+
+
+fold x mid:e [in (x, mid:f)] [out (x,mid:e)] (mid:e.next != x) (x);
+fold x mid:e [in (mid:f, mid:f)] [out (x,mid:e)] (mid:e.next -> x) (x);
+

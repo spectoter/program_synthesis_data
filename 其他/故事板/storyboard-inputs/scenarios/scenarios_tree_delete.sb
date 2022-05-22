@@ -1,0 +1,11 @@
+scenario scenario1
+input z -> zloc, x -> xloc, zloc.left -> xloc, zloc.right -> tnodes:r, xloc.right -> tnodes:y
+output z -> zloc, x -> xloc, zloc.left -> tnodes:y, zloc.right -> tnodes:r
+;
+
+scenario scenario2
+input z -> zloc, x -> xloc, zloc.right -> xloc, zloc.left -> tnodes:r, xloc.right -> tnodes:y
+output z -> zloc, x -> xloc, zloc.right -> tnodes:y, zloc.left -> tnodes:r
+;
+
+choice_selector left, right;

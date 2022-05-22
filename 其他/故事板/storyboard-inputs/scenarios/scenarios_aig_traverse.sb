@@ -1,0 +1,17 @@
+scenario scenario1
+input p -> floc, temp1 -> mid:f
+output p -> floc, temp2 -> sloc
+;
+
+unfold mid:f x [in (mid:f, x)] [out (mid:e, mid:e)] (x.f -> floc, x.nf -> mid:f, x.m -> undef, x.nm -> undef,  mid:e.nf -> mid:e.nf, floc.nf -> floc.nf) ();
+unfold mid:f x [in (mid:f, x)] [out (mid:e, mid:e)] (x.m -> floc, x.nm -> mid:f, x.f -> undef, x.nf -> undef) ();
+unfold mid:f sloc [in (mid:f, sloc)] [out (mid:e, sloc)] (sloc.f -> floc,  sloc.nf -> null, sloc.m -> undef, sloc.nm -> undef) (mid:e);
+unfold mid:f sloc [in (mid:f, sloc)] [out (mid:e, sloc)] (sloc.m -> floc, sloc.nm -> null, sloc.f -> undef, sloc.nf -> undef) (mid:e);
+
+fold x mid:e [in (x, mid:f)] [out (x, mid:e)] (mid:e.nf != x, mid:e.nm != x, mid:f -> mid:f) (x);
+fold x mid:e [in (mid:f, mid:f)] [out (x, mid:e)] (mid:e.nf -> x) (x);
+fold x mid:e [in (mid:f, mid:f)] [out (x, mid:e)] (mid:e.nm -> x) (x);
+
+choice_selector f,m;
+
+constant_pointer_variables p;

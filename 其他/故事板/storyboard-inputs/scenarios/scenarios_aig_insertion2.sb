@@ -1,0 +1,13 @@
+scenario s1
+input mother -> mloc, z -> zloc, zloc.m -> mloc, yn -> ynloc, ynloc.f -> mloc, ynloc.m -> anodes:r, ynloc.nm -> anodes:r
+output mother -> mloc, z -> zloc, yn -> ynloc, ynloc.f -> mloc, ynloc.m -> anodes:r, zloc.m -> mloc, ynloc.nf -> zloc, ynloc.nm -> anodes:r
+;
+
+scenario s2
+input mother -> mloc, z -> zloc, yn -> ynloc, zloc.m -> mloc, ynloc.f -> anodes:r, ynloc.m -> mloc, ynloc.nf -> anodes:r, mloc.m -> mloc.m
+output mother -> mloc, z -> zloc, yn -> ynloc, ynloc.f -> anodes:r, ynloc.m -> mloc, zloc.m -> mloc, ynloc.nm -> zloc, ynloc.nf -> anodes:r
+;
+
+choice_selector f, m;
+
+constant_pointer_variables mother, z;

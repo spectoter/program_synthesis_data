@@ -1,0 +1,14 @@
+scenario s1
+input father -> floc, z -> zloc, zloc.f -> floc, xn -> xnloc, xnloc.f -> floc, xnloc.m -> anodes:r, xnloc.nm -> anodes:r, floc.f -> floc.f
+output father -> floc, z -> zloc, xn -> xnloc, xnloc.f -> floc, xnloc.m -> anodes:r, zloc.f -> floc, xnloc.nf -> zloc, xnloc.nm -> anodes:r
+;
+
+scenario s2
+input father -> floc, z -> zloc, xn -> xnloc, zloc.f -> floc, xnloc.f -> anodes:r, xnloc.m -> floc, xnloc.nf -> anodes:r
+output father -> floc, z -> zloc, xn -> xnloc, xnloc.f -> anodes:r, xnloc.m -> floc, zloc.f -> floc, xnloc.nm -> zloc, xnloc.nf -> anodes:r
+;
+
+choice_selector f, m;
+
+constant_pointer_variables father, z;
+

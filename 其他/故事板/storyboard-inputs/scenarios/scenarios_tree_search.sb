@@ -1,0 +1,16 @@
+scenario scenario1
+input root -> tnodes:r, x -> 2
+output temp1 -> s
+;
+
+unfold tnodes:r s [in (tnodes:r,s)] [out (tnodes:r,s)] (s.val -> x, s.left -> undef, s.right -> undef) ();
+unfold tnodes:r y [in (tnodes:r,y)] [out (tnodes:r,y)] (y.val -> 3, y.left -> tnodes:r, y.right -> undef) ();
+unfold tnodes:r y [in (tnodes:r,y)] [out (tnodes:r,y)] (y.val -> 1, y.right -> tnodes:r, y.left -> undef) ();
+
+fold y tnodes:b [in (y, tnodes:b)] [out (y, tnodes:b)] (tnodes:b.left -> undef, tnodes:b.right -> undef) (y);
+
+fold y tnodes:b [in (y,y)] [out (y, tnodes:b)] (tnodes:b.left != undef) (y);
+fold y tnodes:b [in (y,y)] [out (y, tnodes:b)] (tnodes:b.right != undef) (y);
+
+data_selector val;
+constant_variables x;

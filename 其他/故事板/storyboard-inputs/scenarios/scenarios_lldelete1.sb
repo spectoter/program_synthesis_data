@@ -1,0 +1,16 @@
+scenario scenario1
+input head -> front:f, y -> yloc, front:e.next -> a, a.next -> yloc, yloc.next -> b, b.next -> back:f, back:e.next -> null, front:f.val -> 1, front:e.val -> 2, a.val -> 3, b.val -> 5, yloc.val -> 4, back:f.val -> 6, back:e.val -> 7
+output head -> front:f, y->yloc, front:e.next -> a, a.next -> b, b.next -> back:f, back:e.next -> null
+;
+
+
+unfold front:f x [in (front:f,x)] [out (front:e,front:e)] (x.next -> front:f, x.val < front:f.val) ();
+
+unfold front:f x [in (front:f,x)] [out (front:e,x)] (x.val -> front:f.val) (front:e);
+
+
+fold x front:e [in (x, front:f)] [out (x,front:e)] (front:e.next != x) (x);
+fold x front:e [in (front:f, front:f)] [out (x,front:e)] (front:e.next -> x) (x);
+
+
+data_selector val ;

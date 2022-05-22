@@ -1,0 +1,6 @@
+scenario scenario1
+input root -> xloc, x -> xloc, xloc.right -> null, xloc.left -> tnodes:xl
+output root -> tnodes:xl, x -> xloc
+;
+
+choice_selector left, right;

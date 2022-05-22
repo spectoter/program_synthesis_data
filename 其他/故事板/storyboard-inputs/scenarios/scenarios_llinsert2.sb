@@ -1,0 +1,29 @@
+scenario scenario1
+input head -> front:f, y -> yloc, yloc.next -> null, front:e.next -> a, a.next -> b, b.next -> back:f, back:e.next -> null, front:f.val -> 1, front:e.val -> 2, a.val -> 3, b.val -> 5, yloc.val -> 4, back:f.val -> 6, back:e.val -> 7
+output head -> front:f, y->yloc, front:e.next -> a, a.next -> yloc, b.next -> back:f, back:e.next -> null, yloc.next -> b
+;
+scenario scenario2
+input head -> b, y -> yloc, yloc.next -> null, b.next -> back:f, back:e.next -> null, b.val -> 5, yloc.val -> 4, back:f.val -> 6, back:e.val -> 7
+output head -> yloc, y -> yloc, b.next -> back:f, back:e.next -> null, yloc.next -> b
+;
+
+scenario scenario3
+input head -> a, y -> yloc, yloc.next -> null, a.next -> null, a.val -> 3, yloc.val -> 4
+output head -> a, y -> yloc, a.next -> yloc, yloc.next -> null
+;
+
+scenario scenario4
+input head -> null, y -> yloc, yloc.next -> null, yloc.val -> 4
+output head -> y, y -> yloc, yloc.next -> null
+;
+
+unfold front:f x [in (front:f,x)] [out (front:e,front:e)] (x.next -> front:f, x.val < front:f.val) ();
+
+unfold front:f x [in (front:f,x)] [out (front:e,x)] (x.val -> front:f.val) (front:e);
+
+
+fold x front:e [in (x, front:f)] [out (x,front:e)] (front:e.val -> x.val) (x);
+fold x front:e [in (front:f, front:f)] [out (x,front:e)] (front:e.next -> x, front:e.val -> x.val) (x);
+
+
+data_selector val ;

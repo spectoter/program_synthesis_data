@@ -1,0 +1,14 @@
+scenario scenario1
+input root -> tnodes:r
+output temp1 -> s
+;
+
+unfold tnodes:r y [in (tnodes:r,y)] [out (tnodes:r,y)] (y.left -> tnodes:r, y.right -> undef) ();
+
+unfold tnodes:r s [in (tnodes:r,s)] [out (tnodes:r,s)] (s.left -> null, s.right -> undef) ();
+
+fold y tnodes:b [in (y, tnodes:b)] [out(y,tnodes:b)] (y.right -> undef, tnodes:b.left -> undef, tnodes:b.right -> undef) (y);
+
+fold y tnodes:b [in (y, tnodes:b)] [out (y, tnodes:b)] (y.right -> undef, tnodes:b.left != undef) (y);
+
+fold y tnodes:b [in (y, tnodes:b)] [out (y, tnodes:b)] (y.right -> undef, tnodes:b.right != undef) (y);
